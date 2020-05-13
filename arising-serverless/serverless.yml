@@ -1,0 +1,17 @@
+service: arising-serverless
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  app:
+    handler: index.handler
+    events:
+        - http:
+            path: / # this matches the base path
+            method: ANY
+            cors: true
+        - http:
+            path: /{proxy+} # this matches any path
+            method: ANY
+          cors: true

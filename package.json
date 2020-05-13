@@ -1,0 +1,24 @@
+{
+  "name": "arising.io",
+  "version": "1.0.0",
+  "description": "Arising is an account creation service for the Arisen blockchain.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "cd arising-react && npm run build",
+    "deploy": "gh-pages -d arising-react/build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arisenio/arising.io.git"
+  },
+  "author": "Arisen Community",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arisenio/arising.io/issues"
+  },
+  "homepage": "https://github.com/arisenio/arising.io#readme",
+  "devDependencies": {
+    "gh-pages": "^1.2.0"
+  }
+}
