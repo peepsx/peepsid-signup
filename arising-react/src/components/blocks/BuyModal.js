@@ -138,9 +138,12 @@ class BuyModal extends Component {
                 <Modal.Content>
 
                     <h1><Icon name='user circle' /> {searchResponse.account}</h1>
-                    <p>
+                    {/* <p>
                         Let's get your ARISEN name registered.
                         Make sure your <i>private key <Icon name='key' /> is saved</i> before continuing.
+                    </p> */}
+                    <p>
+                        A PeepsID is simply an account registered on the Arisen blockchain and can be used to login to most of the applications on the dWeb. Instead of an easily hackable password, you have what are known as "cryptographic key" that are mathematically unhackable. Below are the keys to your PeepsID,<i>private key <Icon name='key' /> you should save </i> them in a safe place or import them into the PeepsID app for safekeeping by pressing the button below. This way, you can login to dApps on the dWeb effortlessly.
                     </p>
                     <Divider />
                     {this.renderKeyInputs(true)}

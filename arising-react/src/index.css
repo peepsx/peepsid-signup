@@ -23,6 +23,13 @@ body {
 }
 .signup_model{padding: 2em !important; border-radius: 1em !important; }
 .signup_logo{width: 85px; height: auto;}
+.poweredBy_logo{
+  width: 18px;
+  max-width: 75%;
+  height: auto;
+  border-style: ridge;
+}
+
 .signup_text{margin-top: 10%;}
 a { text-decoration: underline; }
 
@@ -55,4 +62,33 @@ h3 { color:#777 }
       margin-top:2em;
       margin-bottom:0;
   }
+}
+
+@font-face {
+  font-family: Proxima Nova;
+  src: url("/assets/fonts/Mark\ Simonson\ -\ Proxima\ Nova\ Alt\ Bold-webfont.woff2") format('woff2');
+  src: url("/assets/fonts/Proxima-Nova-Bold.woff2") format('woff2');
+  src: url("/assets/fonts/Proxima-Nova-Regular.woff2") format('woff2');
+  src: url("/assets/fonts/proximanova-light-webfont.woff2") format('woff2');
+ 
+}
+
+h1{
+  font-family: Proxima Nova;
+  color: black;
+  font-weight: 900 !important;
+}
+h3{
+  font-family: Proxima Nova;
+  color: black;
+  font-weight: 900 !important;
+}
+p{
+  font-family: Proxima Nova;
+  color: black;
+  font-weight: 300 !important;
+}
+span{
+  font-family: Proxima Nova;
+  font-weight: 900 !important;
 }

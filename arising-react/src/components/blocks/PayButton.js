@@ -37,7 +37,6 @@ class PayButton extends Component {
         fetch(`${MasterConfig.httpEndpoint}/newuser/${name}/${ownerPublic}/${activePublic}`)
         .then(response => response.json())
         .then((checkout) => {
-            console.log(checkout)
             
           // save last checkout object
         //   window.checkout=checkout
@@ -46,16 +45,20 @@ class PayButton extends Component {
           // hide current modal
         //   this.props.closeBuyModal()
           // show success modal
-          Swal.fire('Congratulations...', 'Thank you for registering!', 'success')
+          Swal.fire('Your PeepsID has been registered.', 'You officially have the only account you will ever need for the decentralized web. How does it feel to have an account that cannot be hacked? Welcome to the dWeb and thanks for joining the Peeps revolution.', 'success')
             .then(res => {
                 if(res) {
                     //  window.location.href='https://github.com/arisenio/avote/releases'
                     Swal.fire({
-                        title:'Download', // eslint-disable-next-line 
-                        html: 'You can use the dWallet  to interact with the Arisen network.'+' '+'<a href="https://github.com/arisenio/dwallet/releases" target="_blank">Click here to download.</a>',
+                        title:'Start Using The dWeb', // eslint-disable-next-line 
+                        html: 'You can use the dWallet  to interact with the Arisen network.'+' '+'<a href=" https://dbrowser.com" target="_blank">Click</a>',
+                        confirmButtonText: `Show Me Around`
                     })
+                    .then(() => window.location = "https://dsearch.network")
+                    .catch(e => console.log("Start USING", e))
                 }
             })
+            .catch(e => console.log("START USING", e))
         //   window.location.href="https://github.com/arisenio/avote/releases"
           this.props.showSuccessModal()
         });
@@ -80,7 +83,7 @@ class PayButton extends Component {
                 positive
                 fluid
                 // icon='cart'
-                content={`Proceed To Register On Arisen`}
+                content={`Import Keys To PeepsID & Register Account`}
                 disabled={!canSubmit}
                 loading={this.state.isLoading}
                 onClick={this.getCheckout}
