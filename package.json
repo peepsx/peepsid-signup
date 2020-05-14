@@ -20,5 +20,8 @@
   "homepage": "https://github.com/arisenio/arising.io#readme",
   "devDependencies": {
     "gh-pages": "^1.2.0"
+  },
+  "dependencies": {
+    "serve": "^11.3.0"
   }
 }
