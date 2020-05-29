@@ -51,7 +51,7 @@ class PayButton extends Component {
                     //  window.location.href='https://github.com/arisenio/avote/releases'
                     Swal.fire({
                         title:'Start Using The dWeb', // eslint-disable-next-line 
-                        html: 'You can use the dWallet  to interact with the Arisen network.'+' '+'<a href=" https://dbrowser.com" target="_blank">Click</a>',
+                        html: 'You can use the dWallet  to interact with the Arisen network.'+' '+'<a href="https://arisen.network/dwallet" target="_blank">Click here to download.</a>',
                         confirmButtonText: `Show Me Around`
                     })
                     .then(() => window.location = "https://dsearch.network")
