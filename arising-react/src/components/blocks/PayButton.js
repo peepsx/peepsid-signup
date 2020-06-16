@@ -83,7 +83,7 @@ class PayButton extends Component {
                 positive
                 fluid
                 // icon='cart'
-                content={`Import Keys To PeepsID & Register Account`}
+                content={`Register Account`}
                 disabled={!canSubmit}
                 loading={this.state.isLoading}
                 onClick={this.getCheckout}
