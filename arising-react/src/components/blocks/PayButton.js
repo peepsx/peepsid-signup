@@ -3,6 +3,7 @@ import { /** Checkbox*/ Button } from 'semantic-ui-react'
 import ecc from 'arisenjs-ecc'
 import MasterConfig from '../../config/Master'
 import Swal from 'sweetalert2'
+
 class PayButton extends Component {
 
     state = {
@@ -37,6 +38,7 @@ class PayButton extends Component {
         fetch(`${MasterConfig.httpEndpoint}/newuser/${name}/${ownerPublic}/${activePublic}`)
         .then(response => response.json())
         .then((checkout) => {
+            console.log(checkout)
             
           // save last checkout object
         //   window.checkout=checkout
@@ -45,20 +47,16 @@ class PayButton extends Component {
           // hide current modal
         //   this.props.closeBuyModal()
           // show success modal
-          Swal.fire('Your PeepsID has been registered.', 'You officially have the only account you will ever need for the decentralized web. How does it feel to have an account that cannot be hacked? Welcome to the dWeb and thanks for joining the Peeps revolution.', 'success')
+          Swal.fire('Congratulations...', 'Thank you for registering!', 'success')
             .then(res => {
                 if(res) {
                     //  window.location.href='https://github.com/arisenio/avote/releases'
                     Swal.fire({
-                        title:'Start Using The dWeb', // eslint-disable-next-line 
-                        html: 'You can use the dWallet  to interact with the Arisen network.'+' '+'<a href="https://arisen.network/dwallet" target="_blank">Click here to download.</a>',
-                        confirmButtonText: `Show Me Around`
+                        title:'Get Started', // eslint-disable-next-line 
+                        html: 'You can manage your Peeps account using dWallet or you can get some free coins by signing up for dSocial.<br><br>'+' '+'<button><a href="https://arisen.network/dwallet" target="_blank">Download dWallet</a></button>'+'   '+'<button><a href="https://signup.dsocial.network" target="_blank">Join dSocial</a></button>',
                     })
-                    .then(() => window.location = "https://dsearch.network")
-                    .catch(e => console.log("Start USING", e))
                 }
             })
-            .catch(e => console.log("START USING", e))
         //   window.location.href="https://github.com/arisenio/avote/releases"
           this.props.showSuccessModal()
         });
@@ -83,7 +81,7 @@ class PayButton extends Component {
                 positive
                 fluid
                 // icon='cart'
-                content={`Register Account`}
+                content={`Register PeepsID`}
                 disabled={!canSubmit}
                 loading={this.state.isLoading}
                 onClick={this.getCheckout}

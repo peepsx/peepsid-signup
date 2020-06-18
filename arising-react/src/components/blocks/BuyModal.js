@@ -4,6 +4,8 @@ import ecc from 'arisenjs-ecc'
 import PayButton from './PayButton'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import 'font-awesome/css/font-awesome.min.css';
+import { PrivateKey, /**PublicKey */ } from '@arisencore/ecc';
+const ethers =  require('ethers');
 
 class BuyModal extends Component {
 
@@ -14,6 +16,7 @@ class BuyModal extends Component {
         ownerLoading: false,
         activePrivate: '',  // active prv/pub key pair
         activePublic: '',
+        mnemonic: '',
         activeLoading: false,
         showActivePair: false, // show the active keypair
         copied: false // Copy the key pairs
@@ -21,7 +24,7 @@ class BuyModal extends Component {
     componentDidMount() {
         this.genKeyPair('owner');
         this.genKeyPair('avtive');
-
+        this.memKey();
     }
     open = () => { this.setState({open: true})}
     close = () => { this.setState({open: false})}
@@ -46,31 +49,40 @@ class BuyModal extends Component {
     onKeyReset = (genType) => {
         this.setState({[`${genType}Private`]: '', [`${genType}Public`]: ''})
     }
-
+    memKey = () => {
+        let wallet = ethers.Wallet.createRandom();
+        let Mnemonic_List = wallet.mnemonic
+        this.setState({
+            mnemonic: Mnemonic_List
+        })
+    }
     genKeyPair = (genType='owner') => {
         // generates a public private key pair.
         // set loading.
         this.setState({[`${genType}Loading`]:true})
+        let master = PrivateKey.fromSeed(this.state.mnemonic)
+        let ownerPrivate = master.getChildKey('owner')
+        let activePrivate = ownerPrivate.getChildKey('active')
+        // console.log(ownerPrivate.toString()," ",PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString()," ",activePrivate.toString() , PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
 
-        ecc.randomKey().then(privateKey => {
-            let publicKey = ecc.privateToPublic(privateKey)
+        // ecc.randomKey().then(privateKey => {
+        //     let publicKey = ecc.privateToPublic(privateKey)
             if(genType==='owner') {
                 // save for owner
                 this.setState({
-                    ownerPrivate: privateKey,
-                    ownerPublic: publicKey,
+                    ownerPrivate: ownerPrivate,
+                    ownerPublic: PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString(),
                     ownerLoading: false
                 })
             } else {
                 // save for active
                 this.setState({
-                    activePrivate: privateKey,
-                    activePublic: publicKey,
+                    activePrivate: activePrivate,
+                    activePublic: PrivateKey.fromString(activePrivate.toWif()).toPublic().toString(),
                     activeLoading: false
                 })
             }
-
-        })
+        // })
     }
 
     renderKeyInputs = (isOwnerRender) => {
@@ -82,6 +94,7 @@ class BuyModal extends Component {
 
         return (
         <div>
+            {genType === 'owner' && <h3>12-word mnemoic phrase</h3>}{genType === 'owner' && <h4>{this.state.mnemonic}</h4>}
             <h3>
                 {genType} public key &nbsp;
                 {/* <Button size='mini' onClick={() => {this.genKeyPair(genType)}}
@@ -106,7 +119,8 @@ class BuyModal extends Component {
                 fluid
                 error={Boolean(pubKey.length) && !ecc.isValidPublic(pubKey) } // highlight if not empty and invalid
             />
-            {privKey ?
+                {
+                    this.state.showActivePair && 
                 <Input
                     value={privKey}
                     onChange={({target: {value}}) => this.setState({value, copied: false})}
@@ -115,7 +129,8 @@ class BuyModal extends Component {
                     labelPosition='right corner'
                     fluid
                     disabled
-                /> : null}
+                />
+                }
         </div>
         )
     }
@@ -138,19 +153,14 @@ class BuyModal extends Component {
                 <Modal.Content>
 
                     <h1><Icon name='user circle' /> {searchResponse.account}</h1>
-                    {/* <p>
-                        Let's get your ARISEN name registered.
-                        Make sure your <i>private key <Icon name='key' /> is saved</i> before continuing.
-                    </p> */}
                     <p>
-                        A PeepsID is simply an account registered on the Arisen blockchain and can be used to login to most of the applications on the dWeb. Instead of an easily hackable password, you have what are known as "cryptographic key" that are mathematically unhackable. Below are the keys to your PeepsID,<i>private key <Icon name='key' /> you should save </i> them in a safe place or import them into the PeepsID app for safekeeping by pressing the button below. This way, you can login to dApps on the dWeb effortlessly.
+                        This is your backup phrase that can be used to securely import your PeepsID on any device. Please write this phrase down and keep it in a safe place.
                     </p>
-                    <b>Please save your keys.</b>
                     <Divider />
                     {this.renderKeyInputs(true)}
                     <br />
                     {this.state.showActivePair ? this.renderKeyInputs(false) :
-                    /** <Button size='mini' onClick={this.showActive}>+ active public key (optional)</Button> */ this.renderKeyInputs(false)}
+                     <Button size='mini' onClick={this.showActive}>+ Show Me The Keys</Button> /** this.renderKeyInputs(false) */}
 
                 </Modal.Content>
                 <Modal.Actions>

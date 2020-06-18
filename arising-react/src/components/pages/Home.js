@@ -5,7 +5,8 @@ import MasterConfig from '../../config/Master'
 import ResultCard from '../blocks/ResultCard'
 import SuccessModal from '../blocks/SuccessModal'
 import RandomWordButton from '../blocks/RandomWordButton'
-import bg from '../../images/logo.png'
+// import bg from '../../images/logo.png'
+import peepsPNG from '../../images/peeps.png'
 
 class Home extends Component {
 
@@ -117,14 +118,12 @@ class Home extends Component {
 
     render() {
         return (
-            <div style={{textAlign: 'center', paddingTop: '1em'}}>
-            {/* <img src={bg} alt='logo' className='signup_logo'></img> */}
-            <h1>PeepsID</h1>
+            <div style={{textAlign: 'center', paddingTop: '0.3em'}}>
+            <img src={peepsPNG} alt='logo' className='signup_logo'></img>
             <hr />
             {this.state.showLandingTitle ?
                     <div className="signup_text">
-                        {/* <h3><Icon name='user' /> GET YOUR <u>ARISEN</u> ACCOUNT</h3> */}
-                        <h3><Icon name='user' /> Your PeepsID can be used to login to anything on the dWeb</h3>
+                        <h3><Icon name='user' /> Create <u>Your</u> PeepsID</h3>
                     </div> : null }
 
                 <ResultCard
@@ -148,7 +147,7 @@ class Home extends Component {
                     <Input
                         size='huge'
                         icon='search'
-                        placeholder='Type a username'
+                        placeholder='Enter a username...'
                         onChange={this.onSearchChange}
                         maxLength={MasterConfig.requiredChars}
                         style={{backgroundColor: 'transparent', marginBottom: '0.25em'}}
@@ -166,8 +165,6 @@ class Home extends Component {
                     <br />
                     <span>
                         {this.state.searchTerm.length}/{MasterConfig.requiredChars} characters.
-                        &nbsp; &nbsp;
-                        <span>Powered by: <img src={bg} alt='logo' className="poweredBy_logo"></img></span>
                         &nbsp; &nbsp;
                         <RandomWordButton
                             onGenRandomWord={this.onGenRandomWord}

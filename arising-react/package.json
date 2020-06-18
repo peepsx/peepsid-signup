@@ -7,7 +7,9 @@
     "react-scripts": "1.1.4"
   },
   "dependencies": {
+    "@arisencore/ecc": "^1.0.1",
     "arisenjs-ecc": "~1.0.0",
+    "ethers": "^4.0.27",
     "font-awesome": "^4.7.0",
     "react": "^16.4.1",
     "react-copy-to-clipboard": "^5.0.2",
@@ -20,7 +22,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "serve": "serve -s build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
