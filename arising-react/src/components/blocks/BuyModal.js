@@ -94,7 +94,8 @@ class BuyModal extends Component {
 
         return (
         <div>
-            {genType === 'owner' && <h3>12-word mnemoic phrase</h3>}{genType === 'owner' && <h4>{this.state.mnemonic}</h4>}
+            {genType === 'owner' && <h3>Your 12 Words Mnemonic phrases are :</h3>}{genType === 'owner' && <h4>{this.state.mnemonic}</h4>}
+            { this.state.showActivePair &&
             <h3>
                 {genType} public key &nbsp;
                 {/* <Button size='mini' onClick={() => {this.genKeyPair(genType)}}
@@ -110,7 +111,10 @@ class BuyModal extends Component {
                 </CopyToClipboard>
                 {"PUBLIC_KEY - " + pubKey + " , PRIVATE_KEY - " + privKey === this.state.copied ? <span style={{color: 'red', fontSize: 14, marginLeft: 10}}>Public & Private Key Copied</span> : null}
             </h3>
+            }
             <div className="spacer" />
+            {
+                this.state.showActivePair &&
             <Input
                 placeholder='RSN8mUGcoTi12WMLtTfYFGBSFCtHUSVq15h3XUoMhiAXyRPtTgZjb'
                 onChange={(e) => this.onKeyChange(e,genType)}
@@ -119,6 +123,7 @@ class BuyModal extends Component {
                 fluid
                 error={Boolean(pubKey.length) && !ecc.isValidPublic(pubKey) } // highlight if not empty and invalid
             />
+            }
                 {
                     this.state.showActivePair && 
                 <Input

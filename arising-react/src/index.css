@@ -46,6 +46,37 @@ h3 { color:#777 }
   font-size:1.2em;
   background-color:rgba(0,0,0,.30)
 }
+/* custom changes */
+.copy-mnemoic {
+  position: absolute;
+  right: 21px;
+}
+#swal2-content button {
+  border: 0;
+  border-radius: .25em;
+  background-color: #3085d6;
+  padding: 0.625em 1em;
+  margin-right: 1em;
+}
+#swal2-content button a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.0625em;
+}
+.random-mnemonic {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 20px;
+}
+.random-mnemonic span {
+  border-bottom: 1px solid #e0e0e0;
+  color: #999;
+  font-size: 14px;
+  padding: 10px 0;
+  text-align: center;
+}
 
 @media only screen and (max-width: 600px) {
   .fixedFooter {
