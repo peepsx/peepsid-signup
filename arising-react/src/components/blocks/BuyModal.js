@@ -16,10 +16,11 @@ class BuyModal extends Component {
         ownerLoading: false,
         activePrivate: '',  // active prv/pub key pair
         activePublic: '',
-        mnemonic: '',
+        mnemonic: [],
         activeLoading: false,
         showActivePair: false, // show the active keypair
-        copied: false // Copy the key pairs
+        copied: false, // Copy the key pairs,
+        passPhraseCopied: false
     }
     componentDidMount() {
         this.genKeyPair('owner');
@@ -40,6 +41,15 @@ class BuyModal extends Component {
         }
     }
 
+    passPhrase = (text) => {
+
+        if(text) {
+            this.setState({passPhraseCopied: text})
+            setTimeout(() => {
+                this.setState({passPhraseCopied: false})
+            }, 2000)
+        }
+    }
 
     onKeyChange = (e,genType) => {
         // capture typing of public key.
@@ -53,14 +63,14 @@ class BuyModal extends Component {
         let wallet = ethers.Wallet.createRandom();
         let Mnemonic_List = wallet.mnemonic
         this.setState({
-            mnemonic: Mnemonic_List
+            mnemonic: Mnemonic_List.split(" ")
         })
     }
     genKeyPair = (genType='owner') => {
         // generates a public private key pair.
         // set loading.
         this.setState({[`${genType}Loading`]:true})
-        let master = PrivateKey.fromSeed(this.state.mnemonic)
+        let master = PrivateKey.fromSeed(this.state.mnemonic.toString())
         let ownerPrivate = master.getChildKey('owner')
         let activePrivate = ownerPrivate.getChildKey('active')
         // console.log(ownerPrivate.toString()," ",PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString()," ",activePrivate.toString() , PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
@@ -94,7 +104,32 @@ class BuyModal extends Component {
 
         return (
         <div>
-            {genType === 'owner' && <h3>Your 12 Words Mnemonic phrases are :</h3>}{genType === 'owner' && <h4>{this.state.mnemonic}</h4>}
+            {genType === 'owner' && <h3>Your 12 Words Mnemonic phrases are : {" "}
+            <CopyToClipboard
+                    text={this.state.mnemonic}
+                    onCopy={(text,result) => {
+                        this.passPhrase(text)
+                    }}
+                    >
+                    <span><i className="fa fa-copy"></i></span>
+                </CopyToClipboard><br></br>
+                {this.state.passPhraseCopied ? <span style={{color: 'red', fontSize: 14, marginLeft: 10}}>Pass Phrase Keys Copied</span> : null}
+                </h3>}{genType === 'owner' && 
+                <div className="random-mnemonic">
+                    <span>{this.state.mnemonic[0]}</span>
+                    <span>{this.state.mnemonic[1]}</span>
+                    <span>{this.state.mnemonic[2]}</span>
+                    <span>{this.state.mnemonic[3]}</span>
+                    <span>{this.state.mnemonic[4]}</span>
+                    <span>{this.state.mnemonic[5]}</span>
+                    <span>{this.state.mnemonic[6]}</span>
+                    <span>{this.state.mnemonic[7]}</span>
+                    <span>{this.state.mnemonic[8]}</span>
+                    <span>{this.state.mnemonic[9]}</span>
+                    <span>{this.state.mnemonic[10]}</span>
+                    <span>{this.state.mnemonic[11]}</span>
+                </div>
+            }
             { this.state.showActivePair &&
             <h3>
                 {genType} public key &nbsp;
