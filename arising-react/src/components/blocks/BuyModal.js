@@ -116,18 +116,18 @@ class BuyModal extends Component {
                 {this.state.passPhraseCopied ? <span style={{color: 'red', fontSize: 14, marginLeft: 10}}>Pass Phrase Keys Copied</span> : null}
                 </h3>}{genType === 'owner' && 
                 <div className="random-mnemonic">
-                    <span>{this.state.mnemonic[0]}</span>
-                    <span>{this.state.mnemonic[1]}</span>
-                    <span>{this.state.mnemonic[2]}</span>
-                    <span>{this.state.mnemonic[3]}</span>
-                    <span>{this.state.mnemonic[4]}</span>
-                    <span>{this.state.mnemonic[5]}</span>
-                    <span>{this.state.mnemonic[6]}</span>
-                    <span>{this.state.mnemonic[7]}</span>
-                    <span>{this.state.mnemonic[8]}</span>
-                    <span>{this.state.mnemonic[9]}</span>
-                    <span>{this.state.mnemonic[10]}</span>
-                    <span>{this.state.mnemonic[11]}</span>
+                    <span>1. {"  "+this.state.mnemonic[0]}</span>
+                    <span>2. {"  "+this.state.mnemonic[1]}</span>
+                    <span>3. {"  "+this.state.mnemonic[2]}</span>
+                    <span>4. {"  "+this.state.mnemonic[3]}</span>
+                    <span>5. {"  "+this.state.mnemonic[4]}</span>
+                    <span>6. {"  "+this.state.mnemonic[5]}</span>
+                    <span>7. {"  "+this.state.mnemonic[6]}</span>
+                    <span>8. {"  "+this.state.mnemonic[7]}</span>
+                    <span>9. {"  "+this.state.mnemonic[8]}</span>
+                    <span>10. {"  "+this.state.mnemonic[9]}</span>
+                    <span>11. {"  "+this.state.mnemonic[10]}</span>
+                    <span>12. {"  "+this.state.mnemonic[11]}</span>
                 </div>
             }
             { this.state.showActivePair &&
