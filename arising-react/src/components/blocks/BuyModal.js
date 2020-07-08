@@ -104,7 +104,7 @@ class BuyModal extends Component {
 
         return (
         <div>
-            {genType === 'owner' && <h3>Your 12 Words Mnemonic phrases are : {" "}
+            {genType === 'owner' && <h3>Your 12 word backup phrase is: {" "}
             <CopyToClipboard
                     text={this.state.mnemonic}
                     onCopy={(text,result) => {
