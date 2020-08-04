@@ -53,7 +53,7 @@ class PayButton extends Component {
                     //  window.location.href='https://github.com/arisenio/avote/releases'
                     Swal.fire({
                         title:'Get Started', // eslint-disable-next-line 
-                        html: 'You can manage your Peeps account using dWallet or you can get some free coins by signing up for dSocial.<br><br>'+' '+'<button><a href="https://arisen.network/dwallet" target="_blank">Download dWallet</a></button>'+'   '+'<button><a href="https://signup.dsocial.network" target="_blank">Join dSocial</a></button>',
+                        html: 'You can manage your Peeps account using dWallet or you can get some free coins by signing up for dSocial.<br><br>'+' '+'<button><a href="https://peepsx.com/dwallet.html" target="_blank">Download dWallet</a></button>'+'   '+'<button><a href="https://signup.dsocial.network" target="_blank">Join dSocial</a></button>',
                     })
                 }
             })
