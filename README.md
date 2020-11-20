@@ -13,8 +13,8 @@ An account is a human-readable name that is stored on the blockchain. It can be 
 
 ## Project Hierarchy
 The `peepsid-signup` repo is broken into (2) separate projects (each running independently and in a separate environment)
-- `peepsid-serverless` : Serverless framework functions that interacts with the ARISEN blockchain (running on AWS Lambda)
-- `peepsid-react`: React webapp that interacts with the `peepsid-serverless` endpoints (running on GitHub Pages)
+- `arising-serverless` : Serverless framework functions that interacts with the ARISEN blockchain (running on AWS Lambda)
+- `arising-react`: React webapp that interacts with the `peepsid-serverless` endpoints (running on GitHub Pages)
 
 ## Installation Instructions
 1. Before installation, please ensure that you have the latest version of `node`, `git`, and `serverless` on your local machine. You also need an `Amazon AWS` account.
