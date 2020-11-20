@@ -25,7 +25,7 @@ The `peepsid-signup` repo is broken into (2) separate projects (each running ind
 3. To accept payments and automatically generate new accounts, you'll need to install your own keys. At the very least, you must copy `keys_ex.js` in order for the project to work.
 
 ```
-cp peepsid-serverless/config/keys_ex.js peepsid-serverless/config.keys.js
+cp arising-serverless/config/keys_ex.js arising-serverless/config.keys.js
 ```
 
 4. Once you've made a copy of the `keys_ex.js` file, replace the same keys in `keys.js`, with your own.
@@ -42,7 +42,7 @@ module.exports = {
 
 5. Switch into the `peepsid-serverless` directory and deploy the lambda functions
 ```
-cd peepsid-signup-service/peepsid-serverless
+cd peepsid-signup-service/arising-serverless
 sls deploy
 ```
 
@@ -55,7 +55,7 @@ endpoints:
 
 7. Switch into the `peepsid-react` directory and open the file `src/config/Master`
 ```
-cd ../peepsid-react
+cd ../arising-react
 code src/config/Master.js
 ```
 
