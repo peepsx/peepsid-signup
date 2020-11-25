@@ -23,8 +23,6 @@ class BuyModal extends Component {
         passPhraseCopied: false
     }
     componentDidMount() {
-        this.genKeyPair('owner');
-        this.genKeyPair('avtive');
         this.memKey();
     }
     open = () => { this.setState({open: true})}
@@ -62,15 +60,27 @@ class BuyModal extends Component {
     memKey = () => {
         let wallet = ethers.Wallet.createRandom();
         let Mnemonic_List = wallet.mnemonic
+
+        // this.setState({
+        //     mnemonic: Mnemonic_List.split(" ")
+        // })
+
         this.setState({
-            mnemonic: Mnemonic_List.split(" ")
-        })
+            mnemonic: Mnemonic_List.split(" "),
+            mnemonic_list: Mnemonic_List
+        },()=>{ 
+             this.genKeyPair('owner');
+             this.genKeyPair('active');
+           })
+
+         //this.genKeyPair('owner');
+         //this.genKeyPair('active');
     }
     genKeyPair = (genType='owner') => {
         // generates a public private key pair.
         // set loading.
         this.setState({[`${genType}Loading`]:true})
-        let master = PrivateKey.fromSeed(this.state.mnemonic.toString())
+        let master = PrivateKey.fromSeed(this.state.mnemonic_list)
         let ownerPrivate = master.getChildKey('owner')
         let activePrivate = ownerPrivate.getChildKey('active')
         // console.log(ownerPrivate.toString()," ",PrivateKey.fromString(ownerPrivate.toWif()).toPublic().toString()," ",activePrivate.toString() , PrivateKey.fromString(activePrivate.toWif()).toPublic().toString())
