@@ -6,7 +6,7 @@
   "dependencies": {
     "arisenjs": "^1.0.0",
     "arisenjsv1": "~1.0.0",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "bitsharesjs-ws": "^3.1.1",
     "body-parser": "^1.18.3",
     "coinbase-commerce": "^1.0.3",
